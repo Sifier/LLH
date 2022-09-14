@@ -41,8 +41,14 @@ public class PressureServiceImpl implements PressureService {
     }
 
     @Override
-    public ResponseEntity update(Pressure pressure) {
-        pressureRepository.save(pressure);
-        return new ResponseEntity(HttpStatus.OK);
+    public HttpStatus update(Pressure pressure, Long id) {
+        Pressure up = pressureRepository.findById(id).orElse(null);
+        if (up == null) {
+            return HttpStatus.NO_CONTENT;
+        }
+        up.setDiastolic(pressure.getDiastolic());
+        up.setSystolic(pressure.getSystolic());
+        pressureRepository.save(up);
+        return HttpStatus.OK;
     }
 }

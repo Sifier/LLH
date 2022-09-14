@@ -4,6 +4,7 @@ package com.linelife.demo.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "parameters")
-public class ParametersUser {
+public class ParametersUser extends RepresentationModel<ParametersUser> {
 
     @Id
     @Column(name = "id")

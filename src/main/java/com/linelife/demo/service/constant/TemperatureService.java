@@ -11,5 +11,5 @@ public interface TemperatureService {
     List<Temperature> getAll(Long id);
     HttpStatus save(Temperature temperature);
     Temperature findById(Long id);
-    ResponseEntity update(Temperature temperature);
+    HttpStatus update(Temperature temperature, Long id);
 }

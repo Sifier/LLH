@@ -41,8 +41,13 @@ public class TemperatureServiceImpl implements TemperatureService {
     }
 
     @Override
-    public ResponseEntity update(Temperature temperature) {
+    public HttpStatus update(Temperature temperature, Long id) {
+        Temperature up = temperatureRepository.findById(id).orElse(null);
+        if (up == null) {
+            return HttpStatus.NO_CONTENT;
+        }
+        up.setTemperature(temperature.getTemperature());
         temperatureRepository.save(temperature);
-        return new ResponseEntity(HttpStatus.OK);
+        return HttpStatus.OK;
     }
 }

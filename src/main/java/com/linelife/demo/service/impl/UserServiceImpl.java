@@ -30,20 +30,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User register(User user) {
-        Role roleUser = roleRepository.findByName("ROLE_USER");
-        List<Role> userRoles = new ArrayList<>();
-        userRoles.add(roleUser);
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(userRoles);
-        user.setStatus(Status.ACTIVE);
-        user.setEmail(user.getEmail());
-        User registeredUser = userRepository.save(user);
-        return registeredUser;
-    }
-
-    @Override
     public User findByUsername(String username) {
         User result = userRepository.findByUsername(username);
         if(result!=null&&result.getStatus()!=Status.DELETE)
@@ -76,5 +62,15 @@ public class UserServiceImpl implements UserService {
         user.setRoles(roles);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
+    }
+
+    @Override
+    public Boolean existsByUsername(String username){
+        return userRepository.existsByUsername(username);
+    }
+
+    @Override
+    public Boolean existsByEmail(String email){
+        return userRepository.existsByEmail(email);
     }
 }

@@ -11,5 +11,5 @@ public interface PressureService {
     List<Pressure> getAll(Long id);
     HttpStatus save(Pressure pressure);
     Pressure findById(Long id);
-    ResponseEntity update(Pressure pressure);
+    HttpStatus update(Pressure pressure, Long id);
 }

@@ -41,8 +41,13 @@ public class PulseServiceImpl implements PulseService {
     }
 
     @Override
-    public ResponseEntity update(Pulse pulse) {
-        pulseRepository.save(pulse);
-        return new ResponseEntity(HttpStatus.OK);
+    public HttpStatus update(Pulse pulse, Long id) {
+        Pulse up = pulseRepository.findById(id).orElse(null);
+        if (up == null) {
+            return HttpStatus.NO_CONTENT;
+        }
+        up.setPulse(pulse.getPulse());
+        pulseRepository.save(up);
+        return HttpStatus.OK;
     }
 }

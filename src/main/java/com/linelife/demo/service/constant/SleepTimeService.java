@@ -11,5 +11,5 @@ public interface SleepTimeService {
     List<SleepTime> getAll(Long id);
     HttpStatus save(SleepTime sleepTime);
     SleepTime findById(Long id);
-    ResponseEntity update(SleepTime sleepTime);
+    HttpStatus update(SleepTime sleepTime, Long id);
 }

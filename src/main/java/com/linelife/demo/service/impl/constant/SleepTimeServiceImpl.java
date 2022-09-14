@@ -41,8 +41,13 @@ public class SleepTimeServiceImpl implements SleepTimeService {
     }
 
     @Override
-    public ResponseEntity update(SleepTime sleepTime) {
+    public HttpStatus update(SleepTime sleepTime, Long id) {
+        SleepTime up = sleepTimeRepository.findById(id).orElse(null);
+        if (up == null) {
+            return HttpStatus.NO_CONTENT;
+        }
+        up.setSleepTime(sleepTime.getSleepTime());
         sleepTimeRepository.save(sleepTime);
-        return new ResponseEntity(HttpStatus.OK);
+        return HttpStatus.OK;
     }
 }

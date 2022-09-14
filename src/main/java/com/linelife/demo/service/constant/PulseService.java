@@ -11,5 +11,5 @@ public interface PulseService {
     List<Pulse> getAll(Long id);
     HttpStatus save(Pulse pulse);
     Pulse findById(Long id);
-    ResponseEntity update(Pulse pulse);
+    HttpStatus update(Pulse pulse, Long id);
 }
